@@ -1,15 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
     public float speed;
     public float jumpHeight;
-    public float rotationSpeed;
+    public float rotateSpeed;
+
+    public Camera3rdPerson cameraController;
+
+    public Transform currentForward;
+    public Transform playerModel;
 
     private Rigidbody rigid;
+    //private float velocityY;
 
     // Start is called before the first frame update
     void Start()
@@ -22,13 +25,8 @@ public class PlayerMovement : MonoBehaviour
         bool isGrounded = IsGrounded();
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            rigid.velocity = new Vector3(0, jumpHeight, 0);
+            rigid.velocity = new Vector3(rigid.velocity.x, jumpHeight, rigid.velocity.z);
         }
-
-        float mouseHorizontal = Input.GetAxis("Mouse X") * rotationSpeed;
-        //float mouseVertical = Input.GetAxis("Mouse Y") * rotationSpeed;
-
-        transform.Rotate(0, mouseHorizontal, 0);
     }
 
     // Update is called once per frame
@@ -37,14 +35,29 @@ public class PlayerMovement : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal") * speed;
         float vertical = Input.GetAxis("Vertical") * speed;
 
-        Vector3 move = new Vector3(horizontal, rigid.velocity.y, vertical);
+        if (horizontal != 0 || vertical != 0)
+        {
+            Vector3 forward = cameraController.cameraCenter.forward;
+            forward.y = 0;
+            currentForward.rotation = Quaternion.LookRotation(forward);
+        }
 
-        rigid.velocity = move;
+        Vector3 move = new Vector3();
+        move.y = rigid.velocity.y;
+        move += currentForward.forward * vertical;
+        move += currentForward.right * horizontal;
+
+        rigid.AddForce(move - rigid.velocity, ForceMode.Impulse);
+        
+        //Physics.CheckCapsule()
+        //transform.Translate()
+
+        playerModel.rotation = Quaternion.Lerp(playerModel.rotation, currentForward.rotation, rotateSpeed * Time.fixedDeltaTime);
     }
 
     bool IsGrounded()
     {
-        if(Physics.Raycast(transform.position, Vector3.down, 1.01f))
+        if (Physics.Raycast(transform.position, Vector3.down, 1.01f))
         {
             return true;
         }
