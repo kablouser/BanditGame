@@ -8,17 +8,19 @@ public class PlayerMovement : MonoBehaviour
 
     public Camera3rdPerson cameraController;
 
-    public Transform currentForward;
     public Transform playerModel;
 
     public LayerMask jumpLayerMask;
 
     private Rigidbody rigid;
     //private float velocityY;
+    private Vector3 nextForward;
 
-    void Start()
+    void Awake()
     {
         rigid = GetComponent<Rigidbody>();
+
+        UpdateNextForward();
     }
 
     void Update()
@@ -38,22 +40,19 @@ public class PlayerMovement : MonoBehaviour
 
         if (horizontal != 0 || vertical != 0)
         {
-            Vector3 forward = cameraController.cameraCenter.forward;
-            forward.y = 0;
-            currentForward.rotation = Quaternion.LookRotation(forward);
+            UpdateNextForward();
         }
 
-        Vector3 move = new Vector3();
-        move.y = rigid.velocity.y;
-        move += currentForward.forward * vertical;
-        move += currentForward.right * horizontal;
+        Vector3 move = new Vector3(0, rigid.velocity.y, 0);
+        move += nextForward * vertical;
+        move += Vector3.Cross(Vector3.up, nextForward) * horizontal; //cross(up, forward) = right
 
         rigid.AddForce(move - rigid.velocity, ForceMode.Impulse);
         
         //Physics.CheckCapsule()
         //transform.Translate()
 
-        playerModel.rotation = Quaternion.Lerp(playerModel.rotation, currentForward.rotation, rotateSpeed * Time.fixedDeltaTime);
+        playerModel.rotation = Quaternion.Lerp(playerModel.rotation, Quaternion.LookRotation(nextForward, Vector3.up), rotateSpeed * Time.fixedDeltaTime);
     }
 
     bool IsGrounded()
@@ -66,5 +65,12 @@ public class PlayerMovement : MonoBehaviour
         {
             return false;
         }
+    }
+
+    void UpdateNextForward()
+    {
+        nextForward = cameraController.cameraCenter.forward;
+        nextForward.y = 0;
+        nextForward.Normalize();
     }
 }
