@@ -2,6 +2,7 @@
 public class PlayerMovement : MonoBehaviour
 {
     public float speed;
+    public float runSpeed;
     public float jumpHeight;
 
     public float rotateSpeed;
@@ -16,9 +17,14 @@ public class PlayerMovement : MonoBehaviour
     //private float velocityY;
     private Vector3 nextForward;
 
+    private Animator animator;
+
+    public float animatonSmooth = 0.1f;
+
     void Awake()
     {
         rigid = GetComponent<Rigidbody>();
+        animator = GetComponentInChildren<Animator>();
 
         UpdateNextForward();
     }
@@ -30,6 +36,9 @@ public class PlayerMovement : MonoBehaviour
         {
             rigid.velocity = new Vector3(rigid.velocity.x, jumpHeight, rigid.velocity.z);
         }
+
+        float speedPercent = rigid.velocity.magnitude / runSpeed;
+        animator.SetFloat("speedPercent", speedPercent, animatonSmooth, Time.deltaTime);
     }
 
     // Update is called once per frame
