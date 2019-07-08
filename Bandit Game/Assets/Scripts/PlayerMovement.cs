@@ -1,30 +1,27 @@
 ﻿using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed;
-    public float runSpeed;
-    public float jumpHeight;
+    public float currentSpeed = 3f;
+    public float maxSpeed = 6f;
+    public float maxWalkForce = 60f;
 
-    public float rotateSpeed;
+    public float jumpSpeed = 5f;
+    public float rotateSpeed = 6f;
+    public float animationSmooth = 0.1f;
+
+    public string animationSpeedPercent = "speedPercent";
 
     public Camera3rdPerson cameraController;
-
     public Transform playerModel;
-
     public LayerMask jumpLayerMask;
+    public Animator animator;
 
     private Rigidbody rigid;
-    //private float velocityY;
     private Vector3 nextForward;
-
-    private Animator animator;
-
-    public float animatonSmooth = 0.1f;
 
     void Awake()
     {
         rigid = GetComponent<Rigidbody>();
-        animator = GetComponentInChildren<Animator>();
 
         UpdateNextForward();
     }
@@ -34,18 +31,19 @@ public class PlayerMovement : MonoBehaviour
         bool isGrounded = IsGrounded();
         if (Input.GetButtonDown(InputConstants.JumpKey) && isGrounded)
         {
-            rigid.velocity = new Vector3(rigid.velocity.x, jumpHeight, rigid.velocity.z);
+            rigid.velocity = new Vector3(rigid.velocity.x, jumpSpeed, rigid.velocity.z);
         }
 
-        float speedPercent = rigid.velocity.magnitude / runSpeed;
-        animator.SetFloat("speedPercent", speedPercent, animatonSmooth, Time.deltaTime);
+        Vector3 horizontalVelocity = rigid.velocity;
+        horizontalVelocity.y = 0;
+        float speedPercent = horizontalVelocity.magnitude / maxSpeed;
+        animator.SetFloat(animationSpeedPercent, speedPercent, animationSmooth, Time.deltaTime);
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        float horizontal = Input.GetAxis(InputConstants.HorizontalAxis) * speed;
-        float vertical = Input.GetAxis(InputConstants.VerticalAxis) * speed;
+        float horizontal = Input.GetAxis(InputConstants.HorizontalAxis) * currentSpeed;
+        float vertical = Input.GetAxis(InputConstants.VerticalAxis) * currentSpeed;
 
         if (horizontal != 0 || vertical != 0)
         {
@@ -56,10 +54,13 @@ public class PlayerMovement : MonoBehaviour
         move += nextForward * vertical;
         move += Vector3.Cross(Vector3.up, nextForward) * horizontal; //cross(up, forward) = right
 
-        rigid.AddForce(move - rigid.velocity, ForceMode.Impulse);
-        
-        //Physics.CheckCapsule()
-        //transform.Translate()
+        Vector3 force = (move - rigid.velocity) / Time.fixedDeltaTime;
+        if(force.sqrMagnitude > maxWalkForce * maxWalkForce)
+        {
+            force = force.normalized * maxWalkForce;
+        }
+
+        rigid.AddForce(force, ForceMode.Acceleration);
 
         playerModel.rotation = Quaternion.Lerp(playerModel.rotation, Quaternion.LookRotation(nextForward, Vector3.up), rotateSpeed * Time.fixedDeltaTime);
     }
