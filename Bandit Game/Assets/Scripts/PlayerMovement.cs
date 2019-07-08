@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
-
 public class PlayerMovement : MonoBehaviour
 {
     public float speed;
     public float jumpHeight;
+
     public float rotateSpeed;
 
     public Camera3rdPerson cameraController;
@@ -11,10 +11,11 @@ public class PlayerMovement : MonoBehaviour
     public Transform currentForward;
     public Transform playerModel;
 
+    public LayerMask jumpLayerMask;
+
     private Rigidbody rigid;
     //private float velocityY;
 
-    // Start is called before the first frame update
     void Start()
     {
         rigid = GetComponent<Rigidbody>();
@@ -23,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         bool isGrounded = IsGrounded();
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown(InputConstants.JumpKey) && isGrounded)
         {
             rigid.velocity = new Vector3(rigid.velocity.x, jumpHeight, rigid.velocity.z);
         }
@@ -32,8 +33,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        float horizontal = Input.GetAxis("Horizontal") * speed;
-        float vertical = Input.GetAxis("Vertical") * speed;
+        float horizontal = Input.GetAxis(InputConstants.HorizontalAxis) * speed;
+        float vertical = Input.GetAxis(InputConstants.VerticalAxis) * speed;
 
         if (horizontal != 0 || vertical != 0)
         {
@@ -57,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool IsGrounded()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, 1.01f))
+        if (Physics.Raycast(transform.position, Vector3.down, 1.01f, jumpLayerMask))
         {
             return true;
         }
