@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float animationSmooth = 0.1f;
 
     public string animationSpeedPercent = "speedPercent";
+    public string animationGrounded = "isGrounded";
 
     public Camera3rdPerson cameraController;
     public Transform playerModel;
@@ -38,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
         horizontalVelocity.y = 0;
         float speedPercent = horizontalVelocity.magnitude / maxSpeed;
         animator.SetFloat(animationSpeedPercent, speedPercent, animationSmooth, Time.deltaTime);
+        animator.SetBool(animationGrounded, isGrounded);
     }
 
     void FixedUpdate()
