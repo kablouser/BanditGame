@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody>();
 
-        UpdateNextForward();
+        UpdateNextForward(Vector2.up);
     }
 
     void Update()
@@ -44,17 +44,20 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        float horizontal = Input.GetAxis(InputConstants.HorizontalAxis) * currentSpeed;
-        float vertical = Input.GetAxis(InputConstants.VerticalAxis) * currentSpeed;
-
-        if (horizontal != 0 || vertical != 0)
+        Vector2 inputDirection = new Vector2(Input.GetAxis(InputConstants.HorizontalAxis), Input.GetAxis(InputConstants.VerticalAxis));
+        if (inputDirection.sqrMagnitude > 1)
         {
-            UpdateNextForward();
+            inputDirection.Normalize();
+        }
+        inputDirection *= currentSpeed;
+
+        if (inputDirection.sqrMagnitude != 0)
+        {
+            UpdateNextForward(inputDirection);
         }
 
         Vector3 move = new Vector3(0, rigid.velocity.y, 0);
-        move += nextForward * vertical;
-        move += Vector3.Cross(Vector3.up, nextForward) * horizontal; //cross(up, forward) = right
+        move += inputDirection.magnitude * nextForward;
 
         Vector3 force = (move - rigid.velocity) / Time.fixedDeltaTime;
         if(force.sqrMagnitude > maxWalkForce * maxWalkForce)
@@ -79,9 +82,16 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void UpdateNextForward()
+    void UpdateNextForward(Vector2 inputDirection)
     {
-        nextForward = cameraController.cameraCenter.forward;
+        if (inputDirection == Vector2.zero)
+            inputDirection = Vector2.up;
+        
+        float angle = Vector2.Angle(Vector2.up, inputDirection);
+        if (inputDirection.x <= 0)
+            angle = 360 - angle;
+
+        nextForward = Quaternion.Euler(0, angle, 0) * cameraController.cameraCenter.forward;
         nextForward.y = 0;
         nextForward.Normalize();
     }
