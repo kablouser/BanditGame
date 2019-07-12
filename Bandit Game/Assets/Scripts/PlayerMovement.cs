@@ -40,6 +40,20 @@ public class PlayerMovement : MonoBehaviour
         float speedPercent = horizontalVelocity.magnitude / maxSpeed;
         animator.SetFloat(animationSpeedPercent, speedPercent, animationSmooth, Time.deltaTime);
         animator.SetBool(animationGrounded, isGrounded);
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            animator.SetTrigger("RightSwing");
+        }
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            animator.SetBool("LeftBlock", true);
+        }
+        else if (Input.GetButtonUp("Fire2"))
+        {
+            animator.SetBool("LeftBlock", false);
+        }
     }
 
     void FixedUpdate()
