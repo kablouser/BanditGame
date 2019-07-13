@@ -30,6 +30,9 @@ ModelImporter:
   - first:
       74: 5088876829525150812
     second: LeftBlock
+  - first:
+      74: 5945725571668582109
+    second: JumpMid
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -43,24 +46,51 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: <Root Transform>
     rigImportErrors: 
-    rigImportWarnings: 
+    rigImportWarnings: "Avatar Rig Configuration mis-match. Bone length in configuration
+      does not match position in animation file:\n\t'UpperLeg_L' : position error
+      = 49.771606 mm\n\t'LowerLeg_L' : position error = 56.464203 mm\n\t'Foot_L' :
+      position error = 7.698362 mm\n\t'UpperLeg_R' : position error = 49.771339 mm\n\t'LowerLeg_R'
+      : position error = 56.463936 mm\n\t'Foot_R' : position error = 7.645249 mm\n"
     animationImportErrors: 
     animationImportWarnings: "\nClip 'JumpEnd' has import animation warnings that
       might lower retargeting quality:\nNote: Activate translation DOF on avatar to
       improve retargeting quality.\n\t'Chest' is inbetween humanoid transforms and
-      has rotation animation that will be discarded.\n\nClip 'JumpStart' has import
+      has rotation animation that will be discarded.\n\t'UpperLeg_L' has scale animation
+      that will be discarded.\n\t'LowerLeg_L' has scale animation that will be discarded.\n\t'Foot_L'
+      has scale animation that will be discarded.\n\t'UpperLeg_R' has scale animation
+      that will be discarded.\n\t'LowerLeg_R' has scale animation that will be discarded.\n\t'Foot_R'
+      has scale animation that will be discarded.\n\nClip 'JumpStart' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation DOF
+      on avatar to improve retargeting quality.\n\t'Chest' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'UpperLeg_L' has scale
+      animation that will be discarded.\n\t'LowerLeg_L' has scale animation that will
+      be discarded.\n\t'Foot_L' has scale animation that will be discarded.\n\t'UpperLeg_R'
+      has scale animation that will be discarded.\n\t'LowerLeg_R' has scale animation
+      that will be discarded.\n\t'Foot_R' has scale animation that will be discarded.\n\nClip
+      'LeftBlock' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Foot_R'
+      has scale animation that will be discarded.\n\nClip 'RightSwing' has import
       animation warnings that might lower retargeting quality:\nNote: Activate translation
       DOF on avatar to improve retargeting quality.\n\t'Chest' is inbetween humanoid
-      transforms and has rotation animation that will be discarded.\n\nClip 'OnGuard'
-      has import animation warnings that might lower retargeting quality:\nNote: Activate
-      translation DOF on avatar to improve retargeting quality.\n\t'Chest' is inbetween
-      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      transforms and has rotation animation that will be discarded.\n\t'UpperLeg_L'
+      has scale animation that will be discarded.\n\t'LowerLeg_L' has scale animation
+      that will be discarded.\n\t'Foot_L' has scale animation that will be discarded.\n\t'UpperLeg_R'
+      has scale animation that will be discarded.\n\t'LowerLeg_R' has scale animation
+      that will be discarded.\n\t'Foot_R' has scale animation that will be discarded.\n\nClip
       'Run' has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'UpperLeg_L'
+      has scale animation that will be discarded.\n\t'LowerLeg_L' has scale animation
+      that will be discarded.\n\t'Foot_L' has scale animation that will be discarded.\n\t'UpperLeg_R'
+      has scale animation that will be discarded.\n\t'LowerLeg_R' has scale animation
+      that will be discarded.\n\t'Foot_R' has scale animation that will be discarded.\n\nClip
       'Walk' has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'LowerLeg_L'
+      has scale animation that will be discarded.\n\t'Foot_L' has scale animation
+      that will be discarded.\n\t'LowerLeg_R' has scale animation that will be discarded.\n\t'Foot_R'
+      has scale animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -165,7 +195,7 @@ ModelImporter:
       takeName: JumpStart
       internalID: 7478122292733868173
       firstFrame: 0
-      lastFrame: 20
+      lastFrame: 60
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -223,7 +253,7 @@ ModelImporter:
       takeName: OnGuard
       internalID: -7017928846044008197
       firstFrame: 0
-      lastFrame: 299
+      lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -281,7 +311,36 @@ ModelImporter:
       takeName: LeftBlock
       internalID: 5088876829525150812
       firstFrame: -1
-      lastFrame: 19
+      lastFrame: 10
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0.85
+    - serializedVersion: 16
+      name: JumpMid
+      takeName: JumpMid
+      internalID: 5945725571668582109
+      firstFrame: -1
+      lastFrame: 59
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
