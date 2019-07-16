@@ -8,5 +8,7 @@
         HorizontalAxis = "Horizontal",
         VerticalAxis = "Vertical",
         MouseX = "Mouse X",
-        MouseY = "Mouse Y";
+        MouseY = "Mouse Y",
+        Fire1 = "Fire1",
+        Fire2 = "Fire2";
 }

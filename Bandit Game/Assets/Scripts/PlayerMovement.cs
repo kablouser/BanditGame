@@ -7,72 +7,101 @@ public class PlayerMovement : MonoBehaviour
 
     public float jumpSpeed = 5f;
     public float rotateSpeed = 6f;
-    public float animationSmooth = 0.1f;
 
-    public string animationSpeedPercent = "speedPercent";
-    public string animationGrounded = "isGrounded";
+    public float attackDuration = 1f;
 
-    public Camera3rdPerson cameraController;
     public Transform playerModel;
     public LayerMask jumpLayerMask;
-    public Animator animator;
 
+    public Camera3rdPerson cameraController;
+    public CharacterAnimation characterAnimation;
+    
     private Rigidbody rigid;
     private Vector3 nextForward;
+    private float nextAttack;
+
+    private enum MovementState {walking, jumping, leftBlock, rightSwing};
+    private MovementState movementState;
 
     void Awake()
     {
         rigid = GetComponent<Rigidbody>();
-
         UpdateNextForward(Vector2.up);
     }
 
     void Update()
     {
-        bool isGrounded = IsGrounded();
-        if (Input.GetButtonDown(InputConstants.JumpKey) && isGrounded)
+        if (movementState == MovementState.jumping)
         {
-            rigid.velocity = new Vector3(rigid.velocity.x, jumpSpeed, rigid.velocity.z);
+            characterAnimation.SetLeftBlock(false);
         }
+        else
+        {
+            if ((movementState == MovementState.walking || movementState == MovementState.rightSwing)
+                && nextAttack < Time.time)
+            {
+                movementState = MovementState.walking;
+                if (Input.GetButtonDown(InputConstants.Fire2))
+                {
+                    movementState = MovementState.rightSwing;
+                    characterAnimation.SetRightSwing();
+                    nextAttack = Time.time + attackDuration;
+                }
+            }
 
-        Vector3 horizontalVelocity = rigid.velocity;
-        horizontalVelocity.y = 0;
-        float speedPercent = horizontalVelocity.magnitude / maxSpeed;
-        animator.SetFloat(animationSpeedPercent, speedPercent, animationSmooth, Time.deltaTime);
-        animator.SetBool(animationGrounded, isGrounded);
+            if (movementState == MovementState.walking && Input.GetButtonDown(InputConstants.JumpKey))
+            {
+                rigid.velocity = new Vector3(rigid.velocity.x, jumpSpeed, rigid.velocity.z);
+            }
 
-        if (Input.GetButtonDown("Fire1"))
-        {
-            animator.SetTrigger("RightSwing");
-        }
+            if (movementState == MovementState.walking || movementState == MovementState.leftBlock)
+            {
+                bool button = Input.GetButton(InputConstants.Fire1);                 
+                characterAnimation.SetLeftBlock(button);
+                movementState = button ? MovementState.leftBlock : MovementState.walking;
+            }
 
-        if (Input.GetButtonDown("Fire2"))
-        {
-            animator.SetBool("LeftBlock", true);
-        }
-        else if (Input.GetButtonUp("Fire2"))
-        {
-            animator.SetBool("LeftBlock", false);
-        }
+            Vector3 horizontalVelocity = rigid.velocity;
+            horizontalVelocity.y = 0;
+            characterAnimation.SetSpeedPercent(horizontalVelocity.magnitude / maxSpeed);
+        }        
     }
 
     void FixedUpdate()
     {
+        if(IsGrounded())
+        {
+            if (movementState == MovementState.jumping)
+            {
+                movementState = MovementState.walking;
+                characterAnimation.SetIsGrounded(true);
+            }
+        }
+        else
+        {
+            movementState = MovementState.jumping;
+            characterAnimation.SetIsGrounded(false);
+        }
+        
         Vector2 inputDirection = new Vector2(Input.GetAxis(InputConstants.HorizontalAxis), Input.GetAxis(InputConstants.VerticalAxis));
+
         if (inputDirection.sqrMagnitude > 1)
         {
             inputDirection.Normalize();
         }
         inputDirection *= currentSpeed;
-
         if (inputDirection.sqrMagnitude != 0)
         {
+            //Rotates the player model
             UpdateNextForward(inputDirection);
         }
 
+        //Moves the player
         Vector3 move = new Vector3(0, rigid.velocity.y, 0);
-        move += inputDirection.magnitude * nextForward;
-
+        if (movementState == MovementState.walking || movementState == MovementState.jumping)
+        {
+            move += inputDirection.magnitude * nextForward;
+        }
         Vector3 force = (move - rigid.velocity) / Time.fixedDeltaTime;
         if(force.sqrMagnitude > maxWalkForce * maxWalkForce)
         {

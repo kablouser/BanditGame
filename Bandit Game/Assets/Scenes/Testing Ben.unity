@@ -224,6 +224,31 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8494569970342177356}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &823793884 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 487280978110849330, guid: bf93f8033a25450489d00caebed8aefd,
+    type: 3}
+  m_PrefabInstance: {fileID: 8494569970342177356}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &823793885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823793884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99a9641520df15548833378b5fa65eb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedPercent: speedPercent
+  idlePosition: idlePosition
+  isGrounded: isGrounded
+  leftBlock: leftBlock
+  rightSwing: rightSwing
+  idlePositionDampTime: 0.5
+  onGuardDuration: 3
 --- !u!1 &838148382
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,5 +682,10 @@ PrefabInstance:
       propertyPath: currentSpeed
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 8494569971044688708, guid: bf93f8033a25450489d00caebed8aefd,
+        type: 3}
+      propertyPath: characterAnimation
+      value: 
+      objectReference: {fileID: 823793885}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf93f8033a25450489d00caebed8aefd, type: 3}
