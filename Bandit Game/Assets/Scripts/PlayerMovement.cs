@@ -23,10 +23,13 @@ public class PlayerMovement : MonoBehaviour
     private enum MovementState {walking, jumping, leftBlock, rightSwing};
     private MovementState movementState;
 
+    private Collider[] jumpCollisionBuffer;
+
     void Awake()
     {
         rigid = GetComponent<Rigidbody>();
         UpdateNextForward(Vector2.up);
+        jumpCollisionBuffer = new Collider[10];
     }
 
     void Update()
@@ -115,6 +118,16 @@ public class PlayerMovement : MonoBehaviour
 
     bool IsGrounded()
     {
+        int results = Physics.OverlapSphereNonAlloc(transform.position - Vector3.up * 0.52f, 0.49f, jumpCollisionBuffer, jumpLayerMask);
+        for(int i = 0; i < results; i++)
+        {
+            if(jumpCollisionBuffer[i].gameObject != gameObject)
+            {
+                return true;
+            }
+        }
+        return false;
+        /*
         if (Physics.Raycast(transform.position, Vector3.down, 1.01f, jumpLayerMask))
         {
             return true;
@@ -123,6 +136,7 @@ public class PlayerMovement : MonoBehaviour
         {
             return false;
         }
+        */
     }
 
     void UpdateNextForward(Vector2 inputDirection)
