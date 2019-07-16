@@ -249,6 +249,7 @@ MonoBehaviour:
   rightSwing: rightSwing
   idlePositionDampTime: 0.5
   onGuardDuration: 3
+  speedDampTime: 0.1
 --- !u!1 &838148382
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,5 +688,40 @@ PrefabInstance:
       propertyPath: characterAnimation
       value: 
       objectReference: {fileID: 823793885}
+    - target: {fileID: 2395289209405017572, guid: bf93f8033a25450489d00caebed8aefd,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000020489095
+      objectReference: {fileID: 0}
+    - target: {fileID: 2395289209405017572, guid: bf93f8033a25450489d00caebed8aefd,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.040976282
+      objectReference: {fileID: 0}
+    - target: {fileID: 2395289209405017572, guid: bf93f8033a25450489d00caebed8aefd,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2395289209405017572, guid: bf93f8033a25450489d00caebed8aefd,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9991601
+      objectReference: {fileID: 0}
+    - target: {fileID: 2395289209405017572, guid: bf93f8033a25450489d00caebed8aefd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.21605101
+      objectReference: {fileID: 0}
+    - target: {fileID: 2395289209405017572, guid: bf93f8033a25450489d00caebed8aefd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.000000014901148
+      objectReference: {fileID: 0}
+    - target: {fileID: 2395289209405017572, guid: bf93f8033a25450489d00caebed8aefd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf93f8033a25450489d00caebed8aefd, type: 3}
