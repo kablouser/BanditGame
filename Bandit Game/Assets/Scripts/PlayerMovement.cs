@@ -1,20 +1,27 @@
 ﻿using UnityEngine;
+using System.Collections;
 public class PlayerMovement : MonoBehaviour
 {
     public float currentSpeed = 3f;
     public float maxSpeed = 6f;
     public float maxWalkForce = 60f;
 
-    public float jumpSpeed = 5f;
+    public float jumpHeight = 1f;
     public float rotateSpeed = 6f;
 
-    public float attackDuration = 1f;
+    public float attackDelay = 0.3f;
+    public float attackDuration = 0.7f;
+
+    public int leftHandSlot = 0;
+    public int rightHandSlot = 1;    
 
     public Transform playerModel;
     public LayerMask jumpLayerMask;
 
     public Camera3rdPerson cameraController;
     public CharacterAnimation characterAnimation;
+    public Inventory characterInventory;
+    public Entity characterEntity;
     
     private Rigidbody rigid;
     private Vector3 nextForward;
@@ -49,12 +56,16 @@ public class PlayerMovement : MonoBehaviour
                     movementState = MovementState.rightSwing;
                     characterAnimation.SetRightSwing();
                     nextAttack = Time.time + attackDuration;
+                    if (characterInventory.GetItem(rightHandSlot))
+                    {
+                        StartCoroutine(delayAttack());
+                    }
                 }
             }
 
             if (movementState == MovementState.walking && Input.GetButtonDown(InputConstants.JumpKey))
             {
-                rigid.velocity = new Vector3(rigid.velocity.x, jumpSpeed, rigid.velocity.z);
+                rigid.velocity = new Vector3(rigid.velocity.x, Mathf.Sqrt(2 * Physics.gravity.magnitude * jumpHeight), rigid.velocity.z);
             }
 
             if (movementState == MovementState.walking || movementState == MovementState.leftBlock)
@@ -127,16 +138,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         return false;
-        /*
-        if (Physics.Raycast(transform.position, Vector3.down, 1.01f, jumpLayerMask))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-        */
     }
 
     void UpdateNextForward(Vector2 inputDirection)
@@ -151,5 +152,13 @@ public class PlayerMovement : MonoBehaviour
         nextForward = Quaternion.Euler(0, angle, 0) * cameraController.cameraCenter.forward;
         nextForward.y = 0;
         nextForward.Normalize();
+    }
+
+    IEnumerator delayAttack()
+    {
+        yield return new WaitForSeconds(attackDelay);
+
+        if(movementState == MovementState.rightSwing)
+            characterInventory.GetItem(rightHandSlot).StartAttack(attackDuration, characterEntity);
     }
 }

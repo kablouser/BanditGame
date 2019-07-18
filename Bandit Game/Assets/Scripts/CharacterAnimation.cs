@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-
 public class CharacterAnimation : MonoBehaviour
 {
     private Animator animator;
