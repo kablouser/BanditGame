@@ -48,7 +48,14 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'JumpEnd' has import animation warnings that
+    animationImportWarnings: "\nClip 'Default Take' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Chest' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Shoulder_R' has translation
+      animation that will be discarded.\n\t'UpperLeg_L' has scale animation that will
+      be discarded.\n\t'LowerLeg_L' has scale animation that will be discarded.\n\t'Foot_L'
+      has scale animation that will be discarded.\n\t'UpperLeg_R' has scale animation
+      that will be discarded.\n\nClip 'JumpEnd' has import animation warnings that
       might lower retargeting quality:\nNote: Activate translation DOF on avatar to
       improve retargeting quality.\n\t'Chest' is inbetween humanoid transforms and
       has rotation animation that will be discarded.\n\t'UpperLeg_L' has scale animation
@@ -65,20 +72,19 @@ ModelImporter:
       that will be discarded.\n\t'Foot_R' has scale animation that will be discarded.\n\nClip
       'LeftBlock' has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Foot_R'
-      has scale animation that will be discarded.\n\nClip 'RightSwing' has import
-      animation warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'Chest' is inbetween humanoid
-      transforms and has rotation animation that will be discarded.\n\t'UpperLeg_L'
-      has scale animation that will be discarded.\n\t'LowerLeg_L' has scale animation
-      that will be discarded.\n\t'Foot_L' has scale animation that will be discarded.\n\t'UpperLeg_R'
-      has scale animation that will be discarded.\n\t'LowerLeg_R' has scale animation
-      that will be discarded.\n\t'Foot_R' has scale animation that will be discarded.\n\nClip
-      'Run' has import animation warnings that might lower retargeting quality:\nNote:
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'RightSwing' has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'UpperLeg_L'
-      has scale animation that will be discarded.\n\t'LowerLeg_L' has scale animation
-      that will be discarded.\n\t'Foot_L' has scale animation that will be discarded.\n\t'UpperLeg_R'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Shoulder_R'
+      has translation animation that will be discarded.\n\t'UpperLeg_L' has scale
+      animation that will be discarded.\n\t'LowerLeg_L' has scale animation that will
+      be discarded.\n\t'Foot_L' has scale animation that will be discarded.\n\t'UpperLeg_R'
+      has scale animation that will be discarded.\n\nClip 'Run' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation DOF
+      on avatar to improve retargeting quality.\n\t'Chest' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'UpperLeg_L' has scale
+      animation that will be discarded.\n\t'LowerLeg_L' has scale animation that will
+      be discarded.\n\t'Foot_L' has scale animation that will be discarded.\n\t'UpperLeg_R'
       has scale animation that will be discarded.\n\t'LowerLeg_R' has scale animation
       that will be discarded.\n\t'Foot_R' has scale animation that will be discarded.\n\nClip
       'Walk' has import animation warnings that might lower retargeting quality:\nNote:
@@ -277,8 +283,8 @@ ModelImporter:
       name: RightSwing
       takeName: RightSwing
       internalID: -5616445765786077442
-      firstFrame: -1
-      lastFrame: 59
+      firstFrame: 0
+      lastFrame: 60
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
