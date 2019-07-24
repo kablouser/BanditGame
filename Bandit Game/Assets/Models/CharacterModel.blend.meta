@@ -33,6 +33,12 @@ ModelImporter:
   - first:
       74: 5945725571668582109
     second: JumpMid
+  - first:
+      74: 9033448807489806710
+    second: LightCut2
+  - first:
+      74: -1461042911590058529
+    second: HeavyCut1
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -48,41 +54,50 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'JumpEnd' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
-      improve retargeting quality.\n\t'Chest' is inbetween humanoid transforms and
-      has rotation animation that will be discarded.\n\t'UpperLeg_L' has scale animation
-      that will be discarded.\n\t'LowerLeg_L' has scale animation that will be discarded.\n\t'Foot_L'
-      has scale animation that will be discarded.\n\t'UpperLeg_R' has scale animation
-      that will be discarded.\n\t'LowerLeg_R' has scale animation that will be discarded.\n\t'Foot_R'
-      has scale animation that will be discarded.\n\nClip 'JumpStart' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation DOF
-      on avatar to improve retargeting quality.\n\t'Chest' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n\t'UpperLeg_L' has scale
-      animation that will be discarded.\n\t'LowerLeg_L' has scale animation that will
-      be discarded.\n\t'Foot_L' has scale animation that will be discarded.\n\t'UpperLeg_R'
-      has scale animation that will be discarded.\n\t'LowerLeg_R' has scale animation
-      that will be discarded.\n\t'Foot_R' has scale animation that will be discarded.\n\nClip
-      'LeftBlock' has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Foot_R'
-      has scale animation that will be discarded.\n\nClip 'RightSwing' has import
-      animation warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'Chest' is inbetween humanoid
+    animationImportWarnings: "\nClip 'Block' has import animation warnings that might
+      lower retargeting quality:\n\t'Chest' is inbetween humanoid transforms and has
+      rotation animation that will be discarded.\n\t'UpperLeg_L' has scale animation
+      that will be discarded.\n\t'Foot_L' has scale animation that will be discarded.\n\t'Foot_R'
+      has scale animation that will be discarded.\n\nClip 'HeavyCut1' has import animation
+      warnings that might lower retargeting quality:\n\t'Chest' is inbetween humanoid
       transforms and has rotation animation that will be discarded.\n\t'UpperLeg_L'
       has scale animation that will be discarded.\n\t'LowerLeg_L' has scale animation
       that will be discarded.\n\t'Foot_L' has scale animation that will be discarded.\n\t'UpperLeg_R'
       has scale animation that will be discarded.\n\t'LowerLeg_R' has scale animation
       that will be discarded.\n\t'Foot_R' has scale animation that will be discarded.\n\nClip
-      'Run' has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest'
+      'JumpEnd' has import animation warnings that might lower retargeting quality:\n\t'Chest'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'UpperLeg_L'
       has scale animation that will be discarded.\n\t'LowerLeg_L' has scale animation
       that will be discarded.\n\t'Foot_L' has scale animation that will be discarded.\n\t'UpperLeg_R'
       has scale animation that will be discarded.\n\t'LowerLeg_R' has scale animation
       that will be discarded.\n\t'Foot_R' has scale animation that will be discarded.\n\nClip
-      'Walk' has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'Chest'
+      'JumpStart' has import animation warnings that might lower retargeting quality:\n\t'Chest'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'UpperLeg_L'
+      has scale animation that will be discarded.\n\t'LowerLeg_L' has scale animation
+      that will be discarded.\n\t'Foot_L' has scale animation that will be discarded.\n\t'UpperLeg_R'
+      has scale animation that will be discarded.\n\t'LowerLeg_R' has scale animation
+      that will be discarded.\n\t'Foot_R' has scale animation that will be discarded.\n\nClip
+      'LightCut1' has import animation warnings that might lower retargeting quality:\n\t'Chest'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'UpperLeg_L'
+      has scale animation that will be discarded.\n\t'LowerLeg_L' has scale animation
+      that will be discarded.\n\t'Foot_L' has scale animation that will be discarded.\n\t'UpperLeg_R'
+      has scale animation that will be discarded.\n\t'LowerLeg_R' has scale animation
+      that will be discarded.\n\t'Foot_R' has scale animation that will be discarded.\n\nClip
+      'LightCut2' has import animation warnings that might lower retargeting quality:\n\t'Chest'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'UpperLeg_L'
+      has scale animation that will be discarded.\n\t'LowerLeg_L' has scale animation
+      that will be discarded.\n\t'Foot_L' has scale animation that will be discarded.\n\t'UpperLeg_R'
+      has scale animation that will be discarded.\n\t'LowerLeg_R' has scale animation
+      that will be discarded.\n\t'Foot_R' has scale animation that will be discarded.\n\nClip
+      'OnGuard' has import animation warnings that might lower retargeting quality:\n\t'Chest'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'Run' has import animation warnings that might lower retargeting quality:\n\t'Chest'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'UpperLeg_L'
+      has scale animation that will be discarded.\n\t'LowerLeg_L' has scale animation
+      that will be discarded.\n\t'Foot_L' has scale animation that will be discarded.\n\t'UpperLeg_R'
+      has scale animation that will be discarded.\n\t'LowerLeg_R' has scale animation
+      that will be discarded.\n\t'Foot_R' has scale animation that will be discarded.\n\nClip
+      'Walk' has import animation warnings that might lower retargeting quality:\n\t'Chest'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'LowerLeg_L'
       has scale animation that will be discarded.\n\t'Foot_L' has scale animation
       that will be discarded.\n\t'LowerLeg_R' has scale animation that will be discarded.\n\t'Foot_R'
@@ -190,8 +205,8 @@ ModelImporter:
       name: JumpStart
       takeName: JumpStart
       internalID: 7478122292733868173
-      firstFrame: 26
-      lastFrame: 60
+      firstFrame: 0
+      lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -220,7 +235,7 @@ ModelImporter:
       takeName: JumpEnd
       internalID: 8324654356728483127
       firstFrame: 0
-      lastFrame: 39
+      lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -249,7 +264,7 @@ ModelImporter:
       takeName: OnGuard
       internalID: -7017928846044008197
       firstFrame: 0
-      lastFrame: 30
+      lastFrame: 99
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -274,11 +289,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 3.8
     - serializedVersion: 16
-      name: RightSwing
-      takeName: RightSwing
+      name: LightCut1
+      takeName: LightCut1
       internalID: -5616445765786077442
-      firstFrame: -1
-      lastFrame: 59
+      firstFrame: 0
+      lastFrame: 50
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -303,10 +318,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: LeftBlock
-      takeName: LeftBlock
+      name: Block
+      takeName: Block
       internalID: 5088876829525150812
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 10
       wrapMode: 0
       orientationOffsetY: 0
@@ -335,8 +350,66 @@ ModelImporter:
       name: JumpMid
       takeName: JumpMid
       internalID: 5945725571668582109
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0.85
+    - serializedVersion: 16
+      name: LightCut2
+      takeName: LightCut2
+      internalID: 9033448807489806710
+      firstFrame: 0
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0.85
+    - serializedVersion: 16
+      name: HeavyCut1
+      takeName: HeavyCut1
+      internalID: -1461042911590058529
+      firstFrame: 0
+      lastFrame: 79.8
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -636,151 +709,176 @@ ModelImporter:
       position: {x: -0, y: 0, z: 0}
       rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
-    - name: Hips
+    - name: ArmIK_L
       parentName: Armature
-      position: {x: -0, y: 0, z: 0.9403949}
-      rotation: {x: 0.50000006, y: 0.49999997, z: -0.49999997, w: 0.50000006}
+      position: {x: -0.26459998, y: 0.03307437, z: 0.9637815}
+      rotation: {x: 0.48882315, y: -0.5656218, z: -0.42676368, w: 0.50891715}
+      scale: {x: 1, y: 0.99999994, z: 0.9999999}
+    - name: ArmPoleTarget_L
+      parentName: ArmIK_L
+      position: {x: 1.0324773, y: -0.0101783015, z: 0.00008911826}
+      rotation: {x: 0.56830066, y: 0.42944252, z: -0.48614442, w: -0.5062381}
+      scale: {x: 1.000001, y: 0.9992592, z: 1.0000012}
+    - name: ArmIK_R
+      parentName: Armature
+      position: {x: 0.26459998, y: 0.03307437, z: 0.9637815}
+      rotation: {x: 0.5656218, y: -0.4888232, z: 0.5089171, w: -0.42676368}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: ArmPoleTarget_R
+      parentName: ArmIK_R
+      position: {x: 1.0324773, y: 0.010178208, z: 0.00008912198}
+      rotation: {x: 0.56830066, y: -0.42944255, z: -0.4861445, w: 0.5062381}
+      scale: {x: 1.0000006, y: 0.9992598, z: 1.0000014}
+    - name: RootBone
+      parentName: Armature
+      position: {x: 4.976e-12, y: 0, z: -0.000012777142}
+      rotation: {x: 0.7071068, y: 0.7071067, z: 0.00000009415697, w: 0.00000009415696}
       scale: {x: 1, y: 1, z: 1}
+    - name: Hips
+      parentName: RootBone
+      position: {x: 2.8e-14, y: 0.00000036620824, z: -0.94040763}
+      rotation: {x: 0.000000029802319, y: -0.70710677, z: -0.00000023841855, w: 0.7071068}
+      scale: {x: 1.0000005, y: 1.0000001, z: 1.0000001}
     - name: Spine
       parentName: Hips
-      position: {x: -0.1820929, y: 0.000000013747631, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
+      position: {x: -0.1820929, y: 0.000000013747635, z: 0}
+      rotation: {x: -0, y: -0, z: -3.2501842e-15, w: 1}
+      scale: {x: 1.0000006, y: 1.0000005, z: 1}
     - name: Chest
       parentName: Spine
-      position: {x: -0.21605098, y: 0.000000016311397, z: 0}
-      rotation: {x: 0.000000051717027, y: -0.054049786, z: 0.0000000030202654, w: 0.99853826}
-      scale: {x: 1, y: 1, z: 1}
+      position: {x: -0.21605098, y: 0.000000016311395, z: 0}
+      rotation: {x: 0.000000022189722, y: -0.05404985, z: 0.00000006781014, w: 0.99853826}
+      scale: {x: 1.000001, y: 1.000001, z: 1.0000002}
     - name: Neck
       parentName: Chest
-      position: {x: -0.2544246, y: 0.00000001920853, z: -0.000000007450581}
-      rotation: {x: 0.000000101020966, y: 0.29810005, z: 0.000000006051206, w: 0.9545346}
-      scale: {x: 1.0000001, y: 1, z: 1}
+      position: {x: -0.2544246, y: 0.000000019208535, z: -0.000000007450581}
+      rotation: {x: 0.00000009185336, y: 0.29810196, z: -0.000000067010454, w: 0.954534}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: Head
       parentName: Neck
-      position: {x: -0.05396162, y: 0.000000004073986, z: -0.000000011712473}
-      rotation: {x: -0.0000000774292, y: -0.26381445, z: 0.000000031454263, w: 0.96457344}
-      scale: {x: 0.99999994, y: 1, z: 0.9999999}
+      position: {x: -0.05396162, y: 0.000000004073987, z: -0.000000011712473}
+      rotation: {x: -0.00000006063843, y: -0.26381448, z: -0.000000010189294, w: 0.9645735}
+      scale: {x: 0.9999994, y: 1.0000001, z: 1.0000005}
     - name: Shoulder_L
       parentName: Chest
       position: {x: -0.19678742, y: -0.066872925, z: 0.003256321}
-      rotation: {x: 0.036173146, y: 0.034743804, z: 0.81254244, w: 0.5807402}
-      scale: {x: 1, y: 0.9999998, z: 1}
+      rotation: {x: -0.46720204, y: -0.5491703, z: 0.529751, w: 0.44665214}
+      scale: {x: 0.9999996, y: 1, z: 1.0000001}
     - name: UpperArm_L
       parentName: Shoulder_L
-      position: {x: -0.12907133, y: 0.00000004508547, z: 2.32831e-10}
-      rotation: {x: 0.024128472, y: -0.011980502, z: -0.151924, w: 0.988025}
-      scale: {x: 1, y: 1, z: 1.0000001}
+      position: {x: -0.1161299, y: -4.65661e-10, z: 0.00000002514571}
+      rotation: {x: 0.0697137, y: 0.061383188, z: -0.040578276, w: 0.99484956}
+      scale: {x: 1.0000005, y: 0.9999999, z: 0.99999946}
     - name: LowerArm_L
       parentName: UpperArm_L
-      position: {x: -0.2944158, y: 0.00000006555638, z: 0.000000006519258}
-      rotation: {x: 0.03028883, y: 0.026046433, z: 0.013916197, w: 0.9991049}
-      scale: {x: 1, y: 0.99999994, z: 1.0000001}
+      position: {x: -0.28317228, y: -0.00000002514571, z: -0.000000100932084}
+      rotation: {x: -0.022500066, y: 0.056602515, z: 0.05278911, w: 0.99674636}
+      scale: {x: 0.9999996, y: 1.0000006, z: 0.99999994}
     - name: Hand_L
       parentName: LowerArm_L
-      position: {x: -0.28542313, y: 0.000000037733116, z: -0.000000002793968}
-      rotation: {x: 0.009848235, y: -0.12852302, z: -0.04494823, w: 0.99063843}
-      scale: {x: 1, y: 0.9999999, z: 0.9999998}
+      position: {x: -0.26584175, y: 0.00000001641456, z: 0.000000026571797}
+      rotation: {x: 0.023867011, y: 0.17374425, z: -0.10732045, w: 0.9786346}
+      scale: {x: 1.000001, y: 0.99999976, z: 1.0000002}
     - name: LowerFingers_L
       parentName: Hand_L
-      position: {x: -0.07462672, y: 0.00000004010508, z: 0.000000006984919}
-      rotation: {x: -0.08165681, y: 0.122839846, z: 0.10266568, w: 0.98371863}
-      scale: {x: 1, y: 1, z: 1.0000001}
+      position: {x: -0.058702767, y: 0.00000000372529, z: 0.000000009313226}
+      rotation: {x: 0.3981317, y: -0.11791791, z: 0.23243712, w: 0.8795223}
+      scale: {x: 1.0000005, y: 1, z: 1.0000002}
     - name: UpperFinger_L
       parentName: LowerFingers_L
-      position: {x: -0.053624205, y: 0.000000003929017, z: -0.000000012572855}
-      rotation: {x: -0.07059149, y: 0.09817806, z: 0.10803175, w: 0.986766}
-      scale: {x: 0.99999994, y: 1, z: 0.99999994}
+      position: {x: -0.054865964, y: -0.000000020489097, z: -0.000000014901161}
+      rotation: {x: -0.19112764, y: 0.015989736, z: 0.052729964, w: 0.9800175}
+      scale: {x: 0.9999996, y: 1.0000004, z: 0.99999934}
     - name: LowerThumb_L
       parentName: Hand_L
-      position: {x: -0.016158193, y: -0.015865289, z: 0.019706741}
-      rotation: {x: -0.19500732, y: 0.42107064, z: 0.1192108, w: 0.8777588}
-      scale: {x: 1, y: 0.99999994, z: 1}
+      position: {x: -0.027631005, y: -0.020292286, z: -0.020589786}
+      rotation: {x: 0.23090546, y: -0.093019985, z: 0.4643739, w: 0.8499335}
+      scale: {x: 1, y: 0.9999994, z: 0.9999997}
     - name: UpperThumb_L
       parentName: LowerThumb_L
-      position: {x: -0.0500642, y: 0.000000006170012, z: 0.000000001862645}
-      rotation: {x: 0.038446132, y: -0.07544502, z: -0.09409665, w: 0.9919555}
-      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+      position: {x: -0.049258996, y: 0.0000000433065, z: -0.000000005820766}
+      rotation: {x: 0.124334045, y: -0.012804432, z: -0.13542798, w: 0.98287153}
+      scale: {x: 0.9999998, y: 1.0000005, z: 1.0000004}
     - name: Shoulder_R
       parentName: Chest
       position: {x: -0.19678742, y: 0.066872954, z: 0.003256306}
-      rotation: {x: -0.071530916, y: 0.084560946, z: -0.80888486, w: 0.577441}
-      scale: {x: 0.9999999, y: 0.9999999, z: 1}
+      rotation: {x: -0.46720186, y: 0.5491705, z: 0.52975094, w: -0.4466522}
+      scale: {x: 0.9999997, y: 0.9999995, z: 0.99999976}
     - name: UpperArm_R
       parentName: Shoulder_R
-      position: {x: -0.12907024, y: 0.00000017730054, z: 0.000000002793968}
-      rotation: {x: 0.059151974, y: -0.017798906, z: 0.15133245, w: 0.986551}
-      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+      position: {x: -0.11612984, y: 0.000000006053597, z: 0.00000002165325}
+      rotation: {x: -0.06971357, y: 0.06138306, z: 0.040578317, w: 0.9948495}
+      scale: {x: 1.0000008, y: 1.0000008, z: 1.0000002}
     - name: LowerArm_R
       parentName: UpperArm_R
-      position: {x: -0.29441896, y: 0.000000051106326, z: 0.000000006519258}
-      rotation: {x: -0.05093605, y: 0.025719734, z: -0.014437076, w: 0.9982663}
-      scale: {x: 1.0000001, y: 0.99999994, z: 1}
+      position: {x: -0.28317234, y: 0.000000016763806, z: -0.00000012060627}
+      rotation: {x: 0.022499964, y: 0.05660261, z: -0.052789308, w: 0.99674636}
+      scale: {x: 1, y: 1.0000005, z: 1}
     - name: Hand_R
       parentName: LowerArm_R
-      position: {x: -0.28542316, y: 0.00000002863817, z: 0.000000019557774}
-      rotation: {x: -0.009848259, y: -0.12852304, z: 0.044948205, w: 0.99063843}
-      scale: {x: 0.99999994, y: 1, z: 1}
+      position: {x: -0.2658417, y: 0.000000013096724, z: -0.000000003507012}
+      rotation: {x: -0.023867022, y: 0.17374438, z: 0.10732054, w: 0.97863454}
+      scale: {x: 1.0000011, y: 1.0000002, z: 1.0000004}
     - name: LowerFingers_R
       parentName: Hand_R
-      position: {x: -0.074626625, y: 0.000000023850589, z: 0.000000003958121}
-      rotation: {x: 0.08165601, y: 0.12283838, z: -0.10267128, w: 0.98371834}
-      scale: {x: 1, y: 0.99999994, z: 1}
+      position: {x: -0.05870271, y: 0.000000006519258, z: 0.00000007136259}
+      rotation: {x: -0.39813173, y: -0.11791793, z: -0.2324372, w: 0.8795223}
+      scale: {x: 1.0000001, y: 0.99999994, z: 1.0000001}
     - name: UpperFinger_R
       parentName: LowerFingers_R
-      position: {x: -0.053624142, y: -0.000000003754394, z: 0.000000004656613}
-      rotation: {x: 0.07059254, y: 0.09817767, z: -0.10803516, w: 0.98676556}
-      scale: {x: 1.0000001, y: 1, z: 0.99999994}
+      position: {x: -0.054865994, y: -0.00000000372529, z: 0.00000000372529}
+      rotation: {x: 0.19112779, y: 0.015989808, z: -0.05273008, w: 0.98001736}
+      scale: {x: 1.0000005, y: 1.0000007, z: 1}
     - name: LowerThumb_R
       parentName: Hand_R
-      position: {x: -0.016158093, y: 0.01586533, z: 0.019706728}
-      rotation: {x: 0.19459254, y: 0.420705, z: -0.120788135, w: 0.8778105}
-      scale: {x: 1.0000001, y: 1, z: 1}
+      position: {x: -0.027631016, y: 0.020292293, z: -0.020589726}
+      rotation: {x: -0.23090516, y: -0.09301967, z: -0.46437415, w: 0.84993345}
+      scale: {x: 1.0000006, y: 0.9999999, z: 0.99999976}
     - name: UpperThumb_R
       parentName: LowerThumb_R
-      position: {x: -0.05006417, y: -0.000000022700988, z: 0.000000011175871}
-      rotation: {x: -0.038446113, y: -0.07544502, z: 0.09409668, w: 0.9919555}
-      scale: {x: 0.99999994, y: 0.99999994, z: 1}
+      position: {x: -0.04925908, y: 0.000000033760443, z: -0.000000006752089}
+      rotation: {x: -0.12433398, y: -0.012804327, z: 0.13542792, w: 0.98287153}
+      scale: {x: 1.0000004, y: 1.0000001, z: 1.0000005}
     - name: UpperLeg_L
       parentName: Hips
       position: {x: -0.104944356, y: -0.08333544, z: -0.000000017665425}
-      rotation: {x: -0.052589063, y: 0.0017831549, z: 0.99809366, w: 0.03225302}
-      scale: {x: 0.9999983, y: 0.9998162, z: 0.9999698}
+      rotation: {x: 0.013179887, y: -0.0006473544, z: 0.9994019, w: 0.03196511}
+      scale: {x: 0.99999934, y: 0.999817, z: 0.99997014}
     - name: LowerLeg_L
       parentName: UpperLeg_L
       position: {x: -0.50141126, y: 0.000000039482984, z: -0.000000007625204}
-      rotation: {x: -0.037396993, y: -0.12462722, z: -0.005575104, w: 0.991483}
-      scale: {x: 1.0000027, y: 0.9999917, z: 1.0000093}
+      rotation: {x: -0.03768733, y: -0.008998197, z: -0.00040281372, w: 0.99924904}
+      scale: {x: 1.0000011, y: 0.99999195, z: 1.0000108}
     - name: Foot_L
       parentName: LowerLeg_L
       position: {x: -0.46302968, y: 0.000000031432137, z: 0.000000002793968}
-      rotation: {x: 0.016861653, y: 0.522396, z: 0.046661735, w: 0.85125834}
-      scale: {x: 0.99999547, y: 0.99995863, z: 0.9999741}
+      rotation: {x: 0.017165579, y: 0.47908932, z: 0.04351812, w: 0.87651867}
+      scale: {x: 0.99999166, y: 0.99996084, z: 0.9999769}
     - name: Toes_L
       parentName: Foot_L
       position: {x: -0.12441558, y: 0.000000017542334, z: -0.000000003431524}
-      rotation: {x: -0.0010148861, y: 0.2630914, z: 0.0037977002, w: 0.9647629}
-      scale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+      rotation: {x: -0.0012770777, y: 0.2630919, z: 0.0038924285, w: 0.96476215}
+      scale: {x: 1.0000076, y: 1, z: 0.9999925}
     - name: UpperLeg_R
       parentName: Hips
       position: {x: -0.1049441, y: 0.08333529, z: -0.0000000176654}
-      rotation: {x: -0.030163243, y: -0.0010508855, z: 0.99904203, w: -0.031688426}
-      scale: {x: 0.9999988, y: 0.9998654, z: 0.9999782}
+      rotation: {x: -0.012991259, y: -0.0065380707, z: -0.9993807, w: 0.032042406}
+      scale: {x: 0.99999976, y: 0.9998665, z: 0.99997854}
     - name: LowerLeg_R
       parentName: UpperLeg_R
       position: {x: -0.5014109, y: 0.00000004446065, z: 0.000000009371433}
-      rotation: {x: 0.031472787, y: -0.11542582, z: 0.005779805, w: 0.9928006}
-      scale: {x: 1.0000014, y: 0.999995, z: 1.0000055}
+      rotation: {x: -0.031682163, y: 0.008993107, z: -0.00045064205, w: -0.9994575}
+      scale: {x: 1.0000008, y: 0.99999547, z: 1.0000063}
     - name: Foot_R
       parentName: LowerLeg_R
       position: {x: -0.46308807, y: 0.000000024214387, z: -0.00000000372529}
-      rotation: {x: -0.02203726, y: 0.53449005, z: -0.03800364, w: 0.84403235}
-      scale: {x: 0.9999974, y: 0.9999693, z: 0.9999807}
+      rotation: {x: -0.027991632, y: 0.47976625, z: -0.037479002, w: 0.8761485}
+      scale: {x: 0.99999493, y: 0.9999711, z: 0.99998325}
     - name: Toes_R
       parentName: Foot_R
       position: {x: -0.124381594, y: -0.000000001484295, z: 0.000000004190952}
-      rotation: {x: 0.013039249, y: 0.2629327, z: -0.00052083144, w: 0.964726}
-      scale: {x: 0.99999994, y: 0.9999999, z: 0.9999999}
+      rotation: {x: 0.0132265575, y: 0.26293373, z: -0.000588201, w: 0.9647231}
+      scale: {x: 1.0000069, y: 1.0000002, z: 0.99999416}
     - name: Character
       parentName: CharacterModel(Clone)
       position: {x: -0, y: 0, z: 0}
@@ -795,7 +893,7 @@ ModelImporter:
     feetSpacing: 0
     globalScale: 1
     rootMotionBoneName: 
-    hasTranslationDoF: 0
+    hasTranslationDoF: 1
     hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}

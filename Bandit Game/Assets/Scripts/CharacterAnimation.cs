@@ -4,14 +4,17 @@ public class CharacterAnimation : MonoBehaviour
     private Animator animator;
 
     [Header("Animation Parameter Variables")]
-    public string speedPercent = "speedPercent";
-    public string idlePosition = "idlePosition";
-    public string isGrounded = "isGrounded";
-    public string leftBlock = "leftBlock";
-    public string rightSwing = "rightSwing";
+    public string walkSpeed = "walkSpeed";
+    public string dampWalkSpeed = "dampWalkSpeed";
+    public string idlePose = "idlePose";
+    public string grounded = "grounded";
+    public string block = "block";
+    public string lightCut = "lightCut";
+    public string heavyCut = "heavyCut";
+    public string jump = "jump";
 
     [Header("Settings")]
-    public float idlePositionDampTime = 0.5f;
+    public float idlePoseDamp = 0.5f;
     public float onGuardDuration = 3.0f;
     public float speedDampTime = 0.5f;
 
@@ -26,7 +29,7 @@ public class CharacterAnimation : MonoBehaviour
     private void Update()
     {
         float value = IsOnGuard() ? 1 : 0;
-        animator.SetFloat(idlePosition, value, idlePositionDampTime, Time.deltaTime);
+        animator.SetFloat(idlePose, value, idlePoseDamp, Time.deltaTime);
     }
 
     private void UpdateOffGuard()
@@ -39,14 +42,15 @@ public class CharacterAnimation : MonoBehaviour
         return Time.time < nextOffGuard || currentlyBlocking;
     }
 
-    public void SetSpeedPercent(float speedPercent)
+    public void SetWalkSpeed(float speed)
     {
-        animator.SetFloat(this.speedPercent, speedPercent, speedDampTime, Time.deltaTime);
-    }    
+        animator.SetFloat(walkSpeed, speed);
+        animator.SetFloat(dampWalkSpeed, speed, speedDampTime, Time.deltaTime);
+    }
 
-    public void SetIsGrounded(bool isGrounded)
+    public void SetGrounded(bool isGrounded)
     {
-        animator.SetBool(this.isGrounded, isGrounded);
+        animator.SetBool(grounded, isGrounded);
     }
 
     public void SetLeftBlock(bool blocking)
@@ -55,12 +59,23 @@ public class CharacterAnimation : MonoBehaviour
             UpdateOffGuard();
 
         currentlyBlocking = blocking;
-        animator.SetBool(leftBlock, blocking);
+        animator.SetBool(block, blocking);
     }
 
-    public void SetRightSwing()
+    public void SetLightCut()
     {
         UpdateOffGuard();
-        animator.SetTrigger(rightSwing);
+        animator.SetTrigger(lightCut);
+    }
+
+    public void SetHeavyCut()
+    {
+        UpdateOffGuard();
+        animator.SetTrigger(heavyCut);
+    }
+
+    public void SetJump()
+    {
+        animator.SetTrigger(jump);
     }
 }
