@@ -17,6 +17,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Material__SwordTexture2_png
     second: {fileID: 2100000, guid: d982dcf338d4b2c4bb1cc3272faefe49, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material__SwordTexture_png
+    second: {fileID: 2100000, guid: 1dbb4ccbdff86f54ab6ba22e9a024d70, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
