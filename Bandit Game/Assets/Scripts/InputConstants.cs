@@ -10,5 +10,6 @@
         MouseX = "Mouse X",
         MouseY = "Mouse Y",
         Fire1 = "Fire1",
-        Fire2 = "Fire2";
+        Fire2 = "Fire2",
+        Fire3 = "Fire3";
 }
