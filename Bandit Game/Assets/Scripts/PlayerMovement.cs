@@ -61,9 +61,9 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            Weapon leftHandWeapon = characterInventory.GetItem(leftHandSlot);
-            AttackInputUpdate(MovementState.lightCut, InputConstants.Fire2, characterAnimation.SetLightCut, lightCutTiming, leftHandWeapon);
-            AttackInputUpdate(MovementState.heavyCut, InputConstants.Fire3, characterAnimation.SetHeavyCut, heavyCutTiming, leftHandWeapon);
+            Weapon rightHandWeapon = characterInventory.GetItem(rightHandSlot);
+            AttackInputUpdate(MovementState.lightCut, InputConstants.Fire2, characterAnimation.SetLightCut, lightCutTiming, rightHandWeapon);
+            AttackInputUpdate(MovementState.heavyCut, InputConstants.Fire3, characterAnimation.SetHeavyCut, heavyCutTiming, rightHandWeapon);
 
             if (movementState == MovementState.walking && Input.GetButtonDown(InputConstants.JumpKey))
             {

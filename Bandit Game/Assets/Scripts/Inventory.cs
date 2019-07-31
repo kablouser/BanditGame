@@ -29,7 +29,7 @@ public class Inventory : MonoBehaviour
             if (!inventoryList[i])
                 continue;
 
-            Weapon newItem = Instantiate(inventoryList[i]);
+            Weapon newItem = inventoryList[i];
             inventoryList[i] = null;
             AddIndex(newItem, i);
         }

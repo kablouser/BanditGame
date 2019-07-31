@@ -10,7 +10,21 @@ public class Weapon : Hitbox
     public BoxCollider levelCollider;
     public LayerMask attackMask;
 
-    private bool attacking;
+    public ParticleSystem slashTrail;
+
+    private bool isAttacking;
+    private bool Attacking
+    {
+        get
+        {
+            return isAttacking;
+        }
+        set
+        {
+            isAttacking = value;
+            ToggleSlashTrails(value);
+        }
+    }
     private float stopAttacking;
     private Collider[] collisionBuffer;
     private List<Hitbox> alreadyHit;
@@ -30,7 +44,7 @@ public class Weapon : Hitbox
         {
             print(name + " failed block!");
             //interrupt attack
-            attacking = false;
+            Attacking = false;
         }
         else
         {
@@ -42,7 +56,7 @@ public class Weapon : Hitbox
 
     public void StartAttack(float duration, params Hitbox[] ignoreHits)
     {
-        attacking = true;
+        Attacking = true;
         stopAttacking = Time.time + duration;
         alreadyHit = new List<Hitbox>(ignoreHits)
         {
@@ -70,19 +84,31 @@ public class Weapon : Hitbox
         }
     }
 
+    private void ToggleSlashTrails(bool enabled)
+    {
+        if(slashTrail)
+        {
+            if(enabled)
+                slashTrail.Play(true);
+            else
+                slashTrail.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        }
+    }
+
     private void Awake()
     {
         collisionBuffer = new Collider[5];
+        Attacking = false;
     }
 
     private void Update()
     {
         if(stopAttacking < Time.time)
         {
-            attacking = false;
+            Attacking = false;
         }
 
-        if (attacking)
+        if (Attacking)
         {
             int collisions = Physics.OverlapBoxNonAlloc(attackBox.transform.position + attackBox.center, attackBox.size / 2.0f, collisionBuffer, transform.rotation, attackMask);
             for (int i = 0; i < collisions; i++)
@@ -99,13 +125,13 @@ public class Weapon : Hitbox
                         if (reboundingForce > 0)
                         {
                             print(name + " pinged off!");
-                            attacking = false;
+                            Attacking = false;
                         }
                         else
                         {
                             print(name + " pierced through "+hitbox.name+"!");
-                            attacking = false;
-                        }
+                            Attacking = false;
+                        }                        
                     }
                 }
             }
