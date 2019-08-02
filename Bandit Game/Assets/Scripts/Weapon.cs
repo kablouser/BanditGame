@@ -28,6 +28,7 @@ public class Weapon : Hitbox
     private float stopAttacking;
     private Collider[] collisionBuffer;
     private List<Hitbox> alreadyHit;
+    private Hitbox parentedHitbox;
 
     private Rigidbody rigid
     {
@@ -56,6 +57,7 @@ public class Weapon : Hitbox
 
     public void StartAttack(float duration, params Hitbox[] ignoreHits)
     {
+        print("starting attacking");
         Attacking = true;
         stopAttacking = Time.time + duration;
         alreadyHit = new List<Hitbox>(ignoreHits)
@@ -64,7 +66,7 @@ public class Weapon : Hitbox
         };
     }
 
-    public void EquipTo(Transform parent)
+    public void EquipTo(Transform parent, Hitbox parentHitbox)
     {
         transform.parent = parent;
         if (parent)
@@ -82,6 +84,17 @@ public class Weapon : Hitbox
             rigid.isKinematic = false;
             levelCollider.enabled = true;
         }
+        parentedHitbox = parentHitbox;
+    }
+
+    /// <summary>
+    /// Checks whether its parented hitbox is the same as the input.
+    /// </summary>
+    /// <param name="hitbox">input hitbox object</param>
+    /// <returns>true if they are the same, false otherwise</returns>
+    public bool CheckParentHitbox(Hitbox hitbox)
+    {
+        return hitbox == parentedHitbox;
     }
 
     private void ToggleSlashTrails(bool enabled)
@@ -119,9 +132,19 @@ public class Weapon : Hitbox
                     Hitbox hitbox = collisionBuffer[i].attachedRigidbody.GetComponent<Hitbox>();
                     if (!alreadyHit.Contains(hitbox))
                     {
+                        //Ignore the hitbox if its a weapon with the same parent
+                        if (hitbox.GetComponent<Weapon>() && hitbox.GetComponent<Weapon>().CheckParentHitbox(parentedHitbox))
+                            continue;
+
                         alreadyHit.Add(hitbox);
 
-                        float reboundingForce = hitbox.Hit(collisionBuffer[i], attack);
+                        float reboundingForce = 
+                            hitbox.HitPosition(
+                            collisionBuffer[i], 
+                            attack, 
+                            collisionBuffer[i].ClosestPointOnBounds(attackBox.transform.position), 
+                            collisionBuffer[i].transform);
+                        
                         if (reboundingForce > 0)
                         {
                             print(name + " pinged off!");

@@ -446,6 +446,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa2532d7bb3ad3e47b1969f706d37cd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitParticle: {fileID: 2630238651643212004, guid: 3f8ba9054df7a344c8dae8871148681e,
+    type: 3}
   attachedBehaviours:
   - {fileID: 8494569971044688710}
   - {fileID: 8494569971044688708}
@@ -489,6 +491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1184869751c38341ae0f026d59be992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryHitbox: {fileID: 1010976553}
   inventoryList:
   - {fileID: 3714673165117893494}
   - {fileID: 8014803497042708815}
@@ -569,6 +572,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword Item
       objectReference: {fileID: 0}
+    - target: {fileID: 2435786654061995070, guid: 72e22809d9855cf49b0f145e48c52c60,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7434472893097961849, guid: 72e22809d9855cf49b0f145e48c52c60,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -623,6 +631,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9106917090772170172, guid: 72e22809d9855cf49b0f145e48c52c60,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72e22809d9855cf49b0f145e48c52c60, type: 3}
@@ -656,6 +669,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shield Item
       objectReference: {fileID: 0}
+    - target: {fileID: 6541400204205296600, guid: 50de0cf40487e644d95cf5e29957d1e9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2981710846843866815, guid: 50de0cf40487e644d95cf5e29957d1e9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -710,6 +728,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6871282164119391555, guid: 50de0cf40487e644d95cf5e29957d1e9,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50de0cf40487e644d95cf5e29957d1e9, type: 3}

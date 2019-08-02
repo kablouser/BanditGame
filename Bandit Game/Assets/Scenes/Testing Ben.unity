@@ -490,6 +490,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 1dbb4ccbdff86f54ab6ba22e9a024d70, type: 2}
+    - target: {fileID: 1010976553, guid: bf93f8033a25450489d00caebed8aefd, type: 3}
+      propertyPath: hitParticle
+      value: 
+      objectReference: {fileID: 2630238651643212004, guid: 3f8ba9054df7a344c8dae8871148681e,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 8494569971044688708, guid: bf93f8033a25450489d00caebed8aefd, type: 3}
     - {fileID: 8494569971044688710, guid: bf93f8033a25450489d00caebed8aefd, type: 3}
@@ -505,11 +510,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8494569971044688719, guid: bf93f8033a25450489d00caebed8aefd,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8494569971044688715, guid: bf93f8033a25450489d00caebed8aefd,
         type: 3}
@@ -566,20 +566,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 110712976, guid: bf93f8033a25450489d00caebed8aefd, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 95cab2876720eae468872859966d88b3, type: 2}
-    - target: {fileID: 8494569971044688708, guid: bf93f8033a25450489d00caebed8aefd,
-        type: 3}
-      propertyPath: attackDelay
-      value: 0.217
-      objectReference: {fileID: 0}
-    - target: {fileID: 8494569971044688708, guid: bf93f8033a25450489d00caebed8aefd,
-        type: 3}
-      propertyPath: attackDuration
-      value: 0.667
-      objectReference: {fileID: 0}
     - target: {fileID: 8494569971044688708, guid: bf93f8033a25450489d00caebed8aefd,
         type: 3}
       propertyPath: m_Enabled
@@ -587,21 +573,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8494569971044688708, guid: bf93f8033a25450489d00caebed8aefd,
         type: 3}
-      propertyPath: currentSpeed
-      value: 6
+      propertyPath: maxWalkForce
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8494569971044688710, guid: bf93f8033a25450489d00caebed8aefd,
         type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 823793885, guid: bf93f8033a25450489d00caebed8aefd, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2117525396, guid: bf93f8033a25450489d00caebed8aefd, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 1dbb4ccbdff86f54ab6ba22e9a024d70, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf93f8033a25450489d00caebed8aefd, type: 3}

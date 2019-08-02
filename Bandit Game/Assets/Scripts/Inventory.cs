@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    public Hitbox inventoryHitbox;
+
     [SerializeField]
     [Header("Don't change this during play.")]
     private Weapon[] inventoryList;
@@ -64,7 +66,7 @@ public class Inventory : MonoBehaviour
         if (index < equipablePositions.Length && equipablePositions[index])
         {
             item.gameObject.SetActive(true);
-            item.EquipTo(equipablePositions[index]);
+            item.EquipTo(equipablePositions[index], inventoryHitbox);
         }
         else
         {
@@ -90,7 +92,7 @@ public class Inventory : MonoBehaviour
         if(index < inventoryList.Length && inventoryList[index])
         {
             inventoryList[index].gameObject.SetActive(true);
-            inventoryList[index].EquipTo(null);
+            inventoryList[index].EquipTo(null, inventoryHitbox);
             inventoryList[index] = null;
         }
     }
