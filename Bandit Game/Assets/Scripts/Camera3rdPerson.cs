@@ -28,4 +28,9 @@ public class Camera3rdPerson : MonoBehaviour
             targetCamera.transform.position = cameraExtent.position;
         }
     }
+
+    private void Awake()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 }

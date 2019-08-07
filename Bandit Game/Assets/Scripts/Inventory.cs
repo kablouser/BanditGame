@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
@@ -10,7 +9,12 @@ public class Inventory : MonoBehaviour
     private Weapon[] inventoryList;
     [SerializeField]
     private Transform[] equipablePositions;
-    
+
+    private void Awake()
+    {
+        LinkInventory();
+    }
+
     public Weapon GetItem(int index)
     {
         if(0 <= index && index < inventoryList.Length)
@@ -23,8 +27,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    [ContextMenu("Spawn Prefabs")]
-    public void SpawnPrefabs()
+    public void LinkInventory()
     {
         for (int i = 0; i < inventoryList.Length; i++)
         {

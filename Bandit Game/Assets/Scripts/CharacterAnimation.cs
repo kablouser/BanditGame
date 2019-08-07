@@ -78,4 +78,10 @@ public class CharacterAnimation : MonoBehaviour
     {
         animator.SetTrigger(jump);
     }
+
+    public void SetTrigger(string trigger)
+    {
+        UpdateOffGuard();
+        animator.SetTrigger(trigger);
+    }
 }

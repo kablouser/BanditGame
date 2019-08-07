@@ -10,6 +10,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 1dbb4ccbdff86f54ab6ba22e9a024d70, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Material__ShieldModelTexture
     second: {fileID: 2100000, guid: 95cab2876720eae468872859966d88b3, type: 2}
   materials:

@@ -151,6 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5e0df55aceeb744d8ab073a53ca2e42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitParticle: {fileID: 4728206027997775683, guid: 99335d674e5b97d4b99e2c2b3c0b334f,
+    type: 3}
   defence: 2
   attack: 0.5
   attackBox: {fileID: 7463838053137181420}
@@ -158,6 +160,17 @@ MonoBehaviour:
   attackMask:
     serializedVersion: 2
     m_Bits: 256
+  slashTrail: {fileID: 0}
+  lightAttackData:
+    damageDelay: 0.217
+    duration: 0.667
+    comboWindow: 0.2
+    animationTrigger: lightCut
+  heavyAttackData:
+    damageDelay: 0.583
+    duration: 1
+    comboWindow: 0
+    animationTrigger: heavyCut
 --- !u!1001 &231069542549970602
 PrefabInstance:
   m_ObjectHideFlags: 0

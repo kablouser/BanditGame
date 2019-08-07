@@ -1,16 +1,33 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Weapon : Hitbox
 {
-    public float defence = 1.0f;
-    public float attack = 1.0f;
+    [System.Serializable]
+    public struct AttackData
+    {
+        public float damageDelay, duration, comboWindow;
+        public string animationTrigger;
+        public AttackData(float damageDelay, float duration, float comboWindow, string animationTrigger)
+        {
+            this.damageDelay = damageDelay;
+            this.duration = duration;
+            this.comboWindow = comboWindow;
+            this.animationTrigger = animationTrigger;
+        }
+    }
+
+    public float defence;
+    public float attack;
 
     public BoxCollider attackBox;
     public BoxCollider levelCollider;
     public LayerMask attackMask;
 
     public ParticleSystem slashTrail;
+
+    public AttackData attackData = new AttackData(0.217f, 0.667f, 0.2f, "lightCut");
 
     private bool isAttacking;
     private bool Attacking
@@ -28,7 +45,12 @@ public class Weapon : Hitbox
     private float stopAttacking;
     private Collider[] collisionBuffer;
     private List<Hitbox> alreadyHit;
+    [SerializeField]
     private Hitbox parentedHitbox;
+
+    private float currentAttackDamage;
+
+    public Collider[] orderedCollisions;
 
     private Rigidbody rigid
     {
@@ -38,27 +60,28 @@ public class Weapon : Hitbox
         }
     }
 
-    public override float Hit(Collider hitCollider, float incomingForce)
+    public override float Hit(Collider hitCollider, float incomingAttack)
     {
-        float reboundingForce = CalculateReboundForce(incomingForce, defence);
-        if(reboundingForce < 0)
+        float damage = CalulateDamage(incomingAttack, defence);
+        if(damage == 0)
+        {
+            print(name + " successfully block!");
+        }
+        else
         {
             print(name + " failed block!");
             //interrupt attack
             Attacking = false;
         }
-        else
-        {
-            print(name + " successfully block!");
-        }
 
-        return reboundingForce;
+        return damage;
     }
 
     public void StartAttack(float duration, params Hitbox[] ignoreHits)
     {
-        print("starting attacking");
         Attacking = true;
+        currentAttackDamage = attack;
+
         stopAttacking = Time.time + duration;
         alreadyHit = new List<Hitbox>(ignoreHits)
         {
@@ -74,13 +97,11 @@ public class Weapon : Hitbox
             transform.localScale = Vector3.one;
             transform.localPosition = Vector3.zero;
             transform.localRotation = Quaternion.identity;
-            rigid.detectCollisions = false;
             rigid.isKinematic = true;
             levelCollider.enabled = false;
         }
         else
         {
-            rigid.detectCollisions = true;
             rigid.isKinematic = false;
             levelCollider.enabled = true;
         }
@@ -94,7 +115,15 @@ public class Weapon : Hitbox
     /// <returns>true if they are the same, false otherwise</returns>
     public bool CheckParentHitbox(Hitbox hitbox)
     {
-        return hitbox == parentedHitbox;
+        return hitbox == parentedHitbox && hitbox != null;
+    }
+
+    public MovementController GetParentMovement()
+    {
+        if (parentedHitbox)
+            return parentedHitbox.GetComponent<MovementController>();
+        else
+            return null;
     }
 
     private void ToggleSlashTrails(bool enabled)
@@ -110,8 +139,14 @@ public class Weapon : Hitbox
 
     private void Awake()
     {
-        collisionBuffer = new Collider[5];
+        collisionBuffer = new Collider[10];
         Attacking = false;
+    }
+
+    public Collider[] TestShoot(Vector3 position)
+    {
+        Physics.OverlapBoxNonAlloc(position, attackBox.size / 2.0f, collisionBuffer, attackBox.transform.rotation, attackMask);
+        return collisionBuffer;
     }
 
     private void Update()
@@ -121,40 +156,51 @@ public class Weapon : Hitbox
             Attacking = false;
         }
 
-        if (Attacking)
-        {
-            int collisions = Physics.OverlapBoxNonAlloc(attackBox.transform.position + attackBox.center, attackBox.size / 2.0f, collisionBuffer, transform.rotation, attackMask);
+        if (Attacking && currentAttackDamage > 0)
+        {           
+            int collisions = Physics.OverlapBoxNonAlloc(attackBox.transform.position + attackBox.center, attackBox.size / 2.0f, collisionBuffer, attackBox.transform.rotation, attackMask);
+            orderedCollisions = collisionBuffer.OrderBy(collider => collider ? (collider.transform.position - attackBox.transform.position).sqrMagnitude : Mathf.Infinity).ToArray();
             for (int i = 0; i < collisions; i++)
             {
-                if (collisionBuffer[i].attachedRigidbody &&
-                    collisionBuffer[i].attachedRigidbody.GetComponent<Hitbox>())
+                Hitbox hitbox = null;
+                if(orderedCollisions[i].GetComponent<RagdollHitbox>())
                 {
-                    Hitbox hitbox = collisionBuffer[i].attachedRigidbody.GetComponent<Hitbox>();
-                    if (!alreadyHit.Contains(hitbox))
+                    hitbox = orderedCollisions[i].GetComponent<RagdollHitbox>().GetHitbox;
+                }
+                else if(orderedCollisions[i].attachedRigidbody)
+                {
+                    hitbox = orderedCollisions[i].attachedRigidbody.GetComponent<Hitbox>();
+                }
+
+                if (hitbox && !alreadyHit.Contains(hitbox))
+                {
+                    //Ignore the hitbox if its a weapon with the same parent
+                    Weapon weapon = hitbox.GetComponent<Weapon>();
+                    if (weapon && weapon.CheckParentHitbox(parentedHitbox))
                     {
-                        //Ignore the hitbox if its a weapon with the same parent
-                        if (hitbox.GetComponent<Weapon>() && hitbox.GetComponent<Weapon>().CheckParentHitbox(parentedHitbox))
-                            continue;
+                        continue;
+                    }
 
-                        alreadyHit.Add(hitbox);
+                    alreadyHit.Add(hitbox);
 
-                        float reboundingForce = 
-                            hitbox.HitPosition(
-                            collisionBuffer[i], 
-                            attack, 
-                            collisionBuffer[i].ClosestPointOnBounds(attackBox.transform.position), 
-                            collisionBuffer[i].transform);
-                        
-                        if (reboundingForce > 0)
-                        {
-                            print(name + " pinged off!");
-                            Attacking = false;
-                        }
-                        else
-                        {
-                            print(name + " pierced through "+hitbox.name+"!");
-                            Attacking = false;
-                        }                        
+                    float damageDealt =
+                        hitbox.HitPosition(
+                        orderedCollisions[i],
+                        currentAttackDamage,
+                        orderedCollisions[i].ClosestPointOnBounds(attackBox.transform.position));
+
+                    if (damageDealt == 0)
+                    {
+                        print(name + " pinged off!");
+                        Attacking = false;
+                        break;
+                    }
+                    else
+                    {
+                        print(name + " pierced through " + hitbox.name + "!");
+                        currentAttackDamage -= damageDealt;
+                        if (currentAttackDamage <= 0)
+                            break;
                     }
                 }
             }

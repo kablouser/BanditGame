@@ -1,35 +1,19 @@
 ﻿using UnityEngine;
-using System;
 using System.Collections.Generic;
+using Attributes;
 
 public class Entity : Hitbox
 {
-    [Header("If this entity dies, these are deactivated.")]
+    [Tooltip("If this entity dies, these are deactivated.")]
     public MonoBehaviour[] attachedBehaviours;
-    public float defence = 1.0f;
-
-    //This tag allows the struct to be editable in Unity editor.
-    [System.Serializable]
-    private struct RegeneratingStat
-    {
-        public float maximum;
-        public float current;
-        public float regenRate;
-
-        public void Regen(float timePassed)
-        {
-            if (current < maximum)
-            {
-                current += regenRate * timePassed;
-                if (current > maximum)
-                    current = maximum;
-            }
-        }
-    }
+    public float defence = 0;
+    public RagdollController ragdollController;
+    public Collider levelCollider;
+    public Rigidbody levelRigidbody;
 
     [Header("Don't change these stats during play.")]
     [SerializeField]
-    private RegeneratingStat health;
+    private RegulatedAttribute entityAttribute;
 
     //This tag allows the struct to be editable in Unity editor.
     [System.Serializable]
@@ -42,36 +26,43 @@ public class Entity : Hitbox
     [SerializeField]
     private List<PartDamage> damageAreas;
 
-    public override float Hit(Collider hitCollider, float incomingForce)
+    public override float Hit(Collider hitCollider, float incomingAttack)
     {
-        float reboundForce = CalculateReboundForce(incomingForce, defence);
+        float damage = CalulateDamage(incomingAttack, defence);
 
-        if (reboundForce < 0)
+        if (damage > 0)
         {
-            try
-            {
-                PartDamage partDamage = damageAreas.Find(x => x.hitCollider == hitCollider);
-                DealDamage(incomingForce * partDamage.damageMultiplier);
-            }
-            catch (ArgumentNullException)
-            {
-                //Has not found the part
-                DealDamage(incomingForce);
-            }
+            PartDamage partDamage = damageAreas.Find(x => x.hitCollider == hitCollider);
+            if(partDamage.hitCollider)
+                DealDamage(incomingAttack * partDamage.damageMultiplier);
+
+            //Has not found the part
+            else
+                DealDamage(incomingAttack);           
         }
 
-        return reboundForce;
+        return damage;
     }
 
     public void DealDamage(float damage)
     {
-        print(name + " took damage!");
+        print(name + " took " + damage + " damage!");
 
-        health.current -= damage;
-        if (health.current < 0)
-            health.current = 0;
+        entityAttribute.ClampedAdd(-damage, 0, 0);
 
-        SetAlive(health.current > 0);
+        SetAlive(entityAttribute.current.health > 0);
+    }
+
+    [ContextMenu("Revive")]
+    public void Revive()
+    {
+        SetAlive(true);
+    }
+
+    [ContextMenu("Kill")]
+    public void Kill()
+    {
+        SetAlive(false);
     }
 
     private void SetAlive(bool isAlive)
@@ -85,10 +76,19 @@ public class Entity : Hitbox
             if(behaviour)
                 behaviour.enabled = isAlive;
         }
+
+        SetRagdoll(!isAlive);
+    }
+
+    private void SetRagdoll(bool enabled)
+    {
+        levelRigidbody.isKinematic = enabled;
+        levelCollider.enabled = !enabled;
+        ragdollController.ToggleRagdoll(enabled);
     }
 
     private void FixedUpdate()
     {
-        health.Regen(Time.fixedDeltaTime);
+        entityAttribute.Regen(Time.fixedDeltaTime);
     }
 }
