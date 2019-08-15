@@ -154,6 +154,7 @@ MonoBehaviour:
   hitParticle: {fileID: 4728206027997775683, guid: 99335d674e5b97d4b99e2c2b3c0b334f,
     type: 3}
   defence: 2
+  blockAngle: 90
   attack: 0.5
   attackBox: {fileID: 7463838053137181420}
   levelCollider: {fileID: 6541400204205296600}
@@ -161,16 +162,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   slashTrail: {fileID: 0}
-  lightAttackData:
+  attackData:
     damageDelay: 0.217
     duration: 0.667
     comboWindow: 0.2
     animationTrigger: lightCut
-  heavyAttackData:
-    damageDelay: 0.583
-    duration: 1
-    comboWindow: 0
-    animationTrigger: heavyCut
+  parentedHitbox: {fileID: 0}
+  orderedCollisions: []
 --- !u!1001 &231069542549970602
 PrefabInstance:
   m_ObjectHideFlags: 0
