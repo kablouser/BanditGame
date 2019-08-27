@@ -25,21 +25,16 @@ public class MovementController : MonoBehaviour
     public float walkDrain = 0.5f;
     public float walkCost = 0f;
     public float jumpCost = 2f; //
-    public float blockDrain = 1.4f;
-    public float blockCost = 1.4f;
-    public float attackCost = 2f; //
 
     protected Rigidbody rigid;
     [System.Serializable]
-    protected enum MovementState { walking, jumping, block, lightCut, heavyCut };
+    protected enum MovementState { walking, jumping, block, swordAttack, channelSpell };
 
     [Header("Controls")]
     [SerializeField]
     protected MovementState movementState;
     [SerializeField]
     protected Vector2 moveDirection;
-    [SerializeField]
-    protected bool block;
 
     private Vector3 nextForward;
     private float nextAttack;
@@ -49,6 +44,7 @@ public class MovementController : MonoBehaviour
 
     private bool wasWalking;
     private bool wasBlocking;
+    private bool wasChannelling;
 
     protected virtual void Awake()
     {
@@ -65,8 +61,6 @@ public class MovementController : MonoBehaviour
         }
         else
         {
-            ActionToggle(MovementState.block, block, characterAnimation.SetLeftBlock);
-
             if (movementState == MovementState.walking)
             {
                 Vector3 horizontalVelocity = rigid.velocity;
@@ -140,47 +134,72 @@ public class MovementController : MonoBehaviour
             if(blockWeapon && 
                 Vector3.Angle(playerModel.forward, attackerPosition - transform.position) 
                 < 
-                blockWeapon.blockAngle)                
+                blockWeapon.GetComponent<Shield>().blockAngle)
                 return true;
         }
         blockWeapon = null;
         return false;
     }
 
-    protected void WeaponCut(MovementState attackState, int weaponSlot)
+    [ContextMenu("Sword Attack")]
+    protected void SwordAttack()
     {
-        Weapon useWeapon = characterInventory.GetItem(weaponSlot);
-        if (useWeapon
-        && (movementState == MovementState.walking || movementState == attackState)
+        if (characterInventory.GetSwordShield(out Sword sword, out _) && sword
+        && (movementState == MovementState.walking || movementState == MovementState.swordAttack)
         && nextAttack < Time.time
-        && characterEntity.SpendAttributes(0, 0, attackCost))
+        && characterEntity.SpendAttributes(0, 0, sword.staminaCost))
         {
-            Weapon.AttackData attackData = useWeapon.attackData;
+            Sword.SwordAnimationData attackData = sword.attackData;
 
-            movementState = attackState;            
+            movementState = MovementState.swordAttack;            
             nextAttack = Time.time + attackData.duration - attackData.comboWindow;
 
             characterAnimation.SetTrigger(attackData.animationTrigger);
 
-            rigid.velocity = new Vector3(0, rigid.velocity.y, 0);
             StopMovement(attackData.duration);
-            StartCoroutine(DelayAttack(attackState, attackData.damageDelay, attackData.duration - attackData.damageDelay, useWeapon));
+            sword.StartAttack(() => movementState == MovementState.swordAttack, characterEntity);
         }
     }
 
-    protected void ActionToggle(MovementState actionState, bool active, System.Action<bool> animationToggle)
+    protected void ToggleBlock(bool active)
     {
-        if (movementState == MovementState.walking || movementState == actionState)
+        if (characterInventory.GetSwordShield(out _, out Shield shield) && shield &&
+            (movementState == MovementState.walking || movementState == MovementState.block))
         {
-            wasBlocking = characterEntity.SpendAttributesOverTime(new Attribute(0, 0, blockCost), new Attribute(0, 0, blockDrain), active, wasBlocking, Time.deltaTime);
+            wasBlocking = characterEntity.SpendAttributesOverTime(new Attribute(0, 0, shield.staminaCost), new Attribute(0, 0, shield.staminaDrain), active, wasBlocking, Time.deltaTime);
 
-            animationToggle(wasBlocking);
+            characterAnimation.SetLeftBlock(wasBlocking);
+            movementState = wasBlocking ? MovementState.block : MovementState.walking;
+        }
+    }
+
+    [ContextMenu("Enable Block")]
+    protected void EnableBlock()
+    {
+        ToggleBlock(true);
+    }
+
+    [ContextMenu("Disable Block")]
+    protected void DisableBlock()
+    {
+        ToggleBlock(false);
+    }
+
+    protected void ChannelSpell(bool channelling)
+    {
+        if (characterInventory.GetBook(out MagicBook book) && book &&
+        (movementState == MovementState.walking || movementState == MovementState.channelSpell))
+        {
+            wasChannelling = characterEntity.SpendAttributesOverTime(new Attribute(0, 0, book.manaCost), new Attribute(0, 0, book.manaDrain), channelling, wasChannelling, Time.deltaTime);
+
+            characterAnimation.SetLeftBlock(wasBlocking);
             movementState = wasBlocking ? MovementState.block : MovementState.walking;
         }
     }
 
     protected void StopMovement(float duration)
     {
+        rigid.velocity = new Vector3(0, rigid.velocity.y, 0);
         if (regainMovementCoroutine != null)
             StopCoroutine(regainMovementCoroutine);
         regainMovementCoroutine = StartCoroutine(RegainMovement(duration));
@@ -194,19 +213,6 @@ public class MovementController : MonoBehaviour
             rigid.velocity = new Vector3(rigid.velocity.x, Mathf.Sqrt(2 * Physics.gravity.magnitude * jumpHeight), rigid.velocity.z);
             characterAnimation.SetJump();
         }
-    }
-
-    [ContextMenu("Light Cut")]
-    protected void LightCut()
-    {
-        WeaponCut(MovementState.lightCut, 1);
-    }
-
-    IEnumerator DelayAttack(MovementState attackState, float delay, float damageDuration, Weapon useWeapon)
-    {
-        yield return new WaitForSeconds(delay);
-        if (movementState == attackState)
-            useWeapon.StartAttack(damageDuration, characterEntity);
     }
 
     IEnumerator RegainMovement(float duration)

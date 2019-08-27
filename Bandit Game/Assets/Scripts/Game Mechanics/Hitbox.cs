@@ -14,9 +14,9 @@ public abstract class Hitbox : MonoBehaviour
 
     public virtual float HitPosition(Collider hitCollider, float incomingAttack, Weapon useWeapon)
     {
-        if (hitParticle)
+        if (hitParticle && hitCollider)
         {                        
-            Instantiate(hitParticle, hitCollider.ClosestPointOnBounds(useWeapon.attackBox.transform.position), Quaternion.identity, hitCollider.transform);
+            Instantiate(hitParticle, hitCollider.ClosestPointOnBounds(useWeapon.transform.position), Quaternion.identity, hitCollider.transform);
         }
         return Hit(hitCollider, incomingAttack);
     }

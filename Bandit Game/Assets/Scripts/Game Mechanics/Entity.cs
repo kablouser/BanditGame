@@ -57,7 +57,7 @@ public class Entity : Hitbox
     {
         if (movementController && useWeapon.GetParentMovement() && movementController.BlockAttack(useWeapon.GetParentMovement().transform.position, out Weapon blockWeapon))
         {
-            return blockWeapon.HitPosition(blockWeapon.attackBox, incomingAttack, useWeapon);
+            return blockWeapon.HitPosition(blockWeapon.GetComponentInChildren<Collider>(), incomingAttack, useWeapon);
         }
         return base.HitPosition(hitCollider, incomingAttack, useWeapon);
     }

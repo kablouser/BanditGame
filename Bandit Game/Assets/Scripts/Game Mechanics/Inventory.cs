@@ -2,13 +2,26 @@
 
 public class Inventory : MonoBehaviour
 {
+    public const int LeftHand = 0, RightHand = 1, SwordSlot = 1, ShieldSlot = 0, BookSlot = 0;
+
     public Hitbox inventoryHitbox;
 
     [SerializeField]
-    [Header("Don't change this during play.")]
+    [Tooltip("Don't change this during play.")]
     private Weapon[] inventoryList;
     [SerializeField]
     private Transform[] equipablePositions;
+
+    public enum WeaponCombination { None, SwordShield, Book };
+    [SerializeField]
+    private WeaponCombination currentCombination;
+    public WeaponCombination GetCurrentCombination
+    {
+        get
+        {
+            return currentCombination;
+        }
+    }
 
     private void Awake()
     {
@@ -17,7 +30,7 @@ public class Inventory : MonoBehaviour
 
     public Weapon GetItem(int index)
     {
-        if(0 <= index && index < inventoryList.Length)
+        if (0 <= index && index < inventoryList.Length)
         {
             return inventoryList[index];
         }
@@ -42,9 +55,9 @@ public class Inventory : MonoBehaviour
 
     public bool Add(Weapon item)
     {
-        for(int i = 0; i < inventoryList.Length; i++)
+        for (int i = 0; i < inventoryList.Length; i++)
         {
-            if(inventoryList[i] == null)
+            if (inventoryList[i] == null)
             {
                 AddIndex(item, i);
                 return true;
@@ -55,16 +68,17 @@ public class Inventory : MonoBehaviour
 
     public void AddIndex(Weapon item, int index)
     {
-        if (index >= inventoryList.Length)
+        if (index < 0 || inventoryList.Length <= index)
         {
             return;
         }
 
         if (inventoryList[index])
         {
-            Remove(item);
+            RemoveIndex(index);
         }
         inventoryList[index] = item;
+        UpdateCombination();
 
         if (index < equipablePositions.Length && equipablePositions[index])
         {
@@ -74,14 +88,14 @@ public class Inventory : MonoBehaviour
         else
         {
             item.gameObject.SetActive(false);
-        }        
+        }
     }
 
     public bool Remove(Weapon item)
     {
-        for(int i = 0; i < inventoryList.Length; i++)
+        for (int i = 0; i < inventoryList.Length; i++)
         {
-            if(inventoryList[i] == item)
+            if (inventoryList[i] == item)
             {
                 RemoveIndex(i);
                 return true;
@@ -92,11 +106,62 @@ public class Inventory : MonoBehaviour
 
     public void RemoveIndex(int index)
     {
-        if(index < inventoryList.Length && inventoryList[index])
+        if (0 <= index && index < inventoryList.Length && inventoryList[index])
         {
             inventoryList[index].gameObject.SetActive(true);
             inventoryList[index].EquipTo(null, inventoryHitbox);
             inventoryList[index] = null;
+            UpdateCombination();
+        }
+    }
+
+    public bool GetSwordShield(out Sword sword, out Shield shield)
+    {
+        if (currentCombination == WeaponCombination.SwordShield)
+        {
+            sword = GetItem(SwordSlot) as Sword;
+            shield = GetItem(ShieldSlot) as Shield;
+            return true;
+        }
+        else
+        {
+            sword = null;
+            shield = null;
+            return false;
+        }
+    }
+
+    public bool GetBook(out MagicBook book)
+    {
+        if (currentCombination == WeaponCombination.Book)
+        {
+            book = (MagicBook)GetItem(BookSlot);
+            return true;
+        }
+        else
+        {
+            book = null;
+            return false;
+        }
+    }
+
+    private void UpdateCombination()
+    {
+        Sword sword = GetItem(SwordSlot) as Sword;
+        Shield shield = GetItem(ShieldSlot) as Shield;
+
+        if (sword || shield)
+        {
+            currentCombination = WeaponCombination.SwordShield;
+            return;
+        }
+
+        MagicBook book = GetItem(BookSlot) as MagicBook;
+
+        if (book)
+        {
+            currentCombination = WeaponCombination.Book;
+            return;
         }
     }
 }

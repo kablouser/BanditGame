@@ -98,7 +98,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2981710846843866815}
   - component: {fileID: 6871282164119391555}
-  - component: {fileID: 6899778632187946605}
+  - component: {fileID: 8565508362289254524}
   m_Layer: 0
   m_Name: Shield Item
   m_TagString: Untagged
@@ -139,7 +139,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6899778632187946605
+--- !u!114 &8565508362289254524
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,27 +148,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6049648130273945551}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5e0df55aceeb744d8ab073a53ca2e42, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a302d5f751de9e479f0de94ca39584e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hitParticle: {fileID: 4728206027997775683, guid: 99335d674e5b97d4b99e2c2b3c0b334f,
     type: 3}
-  defence: 2
-  blockAngle: 90
-  attack: 0.5
-  attackBox: {fileID: 7463838053137181420}
   levelCollider: {fileID: 6541400204205296600}
-  attackMask:
-    serializedVersion: 2
-    m_Bits: 256
-  slashTrail: {fileID: 0}
-  attackData:
-    damageDelay: 0.217
-    duration: 0.667
-    comboWindow: 0.2
-    animationTrigger: lightCut
   parentedHitbox: {fileID: 0}
-  orderedCollisions: []
+  defence: 3
+  blockAngle: 90
 --- !u!1001 &231069542549970602
 PrefabInstance:
   m_ObjectHideFlags: 0

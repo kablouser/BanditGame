@@ -4816,6 +4816,7 @@ GameObject:
   - component: {fileID: 7434472893097961849}
   - component: {fileID: 9106917090772170172}
   - component: {fileID: 8190578123489475589}
+  - component: {fileID: 759793572485129068}
   m_Layer: 0
   m_Name: Sword Item
   m_TagString: Untagged
@@ -4871,24 +4872,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitParticle: {fileID: 4728206027997775683, guid: 99335d674e5b97d4b99e2c2b3c0b334f,
     type: 3}
-  defence: 0.5
-  attack: 2
-  attackBox: {fileID: 3707537444297569049}
   levelCollider: {fileID: 2435786654061995070}
+  parentedHitbox: {fileID: 0}
+--- !u!114 &759793572485129068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4691139594073444431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ddcdbac35de90942964074fb9d04d04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitParticle: {fileID: 4728206027997775683, guid: 99335d674e5b97d4b99e2c2b3c0b334f,
+    type: 3}
+  levelCollider: {fileID: 2435786654061995070}
+  parentedHitbox: {fileID: 0}
+  attack: 1
+  attackBox: {fileID: 3707537444297569049}
   attackMask:
     serializedVersion: 2
     m_Bits: 256
   slashTrail: {fileID: 5425417270443355220}
-  lightAttackData:
+  attackData:
     damageDelay: 0.217
     duration: 0.667
     comboWindow: 0.2
     animationTrigger: lightCut
-  heavyAttackData:
-    damageDelay: 0.583
-    duration: 1
-    comboWindow: 0
-    animationTrigger: heavyCut
 --- !u!1 &6398521602794783894
 GameObject:
   m_ObjectHideFlags: 0
@@ -4930,8 +4942,8 @@ GameObject:
   m_Component:
   - component: {fileID: 701660391363851814}
   - component: {fileID: 3707537444297569049}
-  m_Layer: 8
-  m_Name: Hitbox
+  m_Layer: 0
+  m_Name: Attack Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4960,7 +4972,7 @@ BoxCollider:
   m_GameObject: {fileID: 9099582454007681772}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.16357055, y: 0.923275, z: 0.04423091}
   m_Center: {x: 0, y: 0.1529026, z: 0}
