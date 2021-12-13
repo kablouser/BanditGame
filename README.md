@@ -1,3 +1,2 @@
 # BanditGame
-Easy game Easy life
-I am Jason.
+This is a readme file.
